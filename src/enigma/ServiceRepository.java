@@ -19,7 +19,8 @@ public class ServiceRepository implements ServiceRegistry, ServiceProvider {
 
 	public void register(EnigmaService service)
     {
-
+        this.services.add(service);
+        
 	}
 
 	public List<String> listAll()
