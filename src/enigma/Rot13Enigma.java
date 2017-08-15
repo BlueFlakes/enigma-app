@@ -1,0 +1,63 @@
+package enigma;
+
+import services.EnigmaService;
+
+public class Rot13Enigma implements EnigmaService {
+
+	public static final boolean KEY_REQUIRED = false;
+
+	public Rot13Enigma(){
+	}
+
+	public String encipher(String text){
+		String encipheredText = "";
+		char letter;
+		char encipheredLetter;
+		int asciiCode;
+
+			for (int i=0; i<text.length(); i++) {
+				letter = text.toUpperCase().charAt(i);
+				asciiCode = (int) letter;
+
+				if (asciiCode > 64 && asciiCode < 91) {
+					asciiCode += 13;
+
+					if (asciiCode > 90) {
+						asciiCode -= 26;
+					}
+
+					encipheredLetter = (char) asciiCode;
+
+					if ( !Character.isUpperCase(text.charAt(i)) ) {
+						encipheredLetter = Character.toLowerCase(encipheredLetter);
+					}
+
+				} else {
+					encipheredLetter = text.charAt(i);
+				}
+
+				encipheredText += encipheredLetter;
+			}
+
+		return encipheredText;
+	}
+
+	public String decipher(String text){
+		return encipher(text);
+
+	public String getName(){
+		return "Rot13Enigma";
+	}
+
+	public boolean isKeyRequired(){
+		return KEY_REQUIRED;
+	}
+
+	public void setKey(String key) {}
+
+	public static void main(String[] args) {
+
+	}
+
+
+}
