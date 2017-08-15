@@ -44,6 +44,7 @@ public class Rot13Enigma implements EnigmaService {
 
 	public String decipher(String text){
 		return encipher(text);
+	}
 
 	public String getName(){
 		return "Rot13Enigma";
@@ -54,10 +55,5 @@ public class Rot13Enigma implements EnigmaService {
 	}
 
 	public void setKey(String key) {}
-
-	public static void main(String[] args) {
-
-	}
-
 
 }
