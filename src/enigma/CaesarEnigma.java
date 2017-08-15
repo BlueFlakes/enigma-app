@@ -1,8 +1,8 @@
-// package enigma;
+package enigma;
 
-// import services.EnigmaService;
+import services.EnigmaService;
 
-public class CaesarEnigma {
+public class CaesarEnigma implements EnigmaService {
 
 	public static final boolean KEY_REQUIRED = true;
     private static Integer key;

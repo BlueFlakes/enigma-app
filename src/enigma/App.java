@@ -4,9 +4,9 @@ import services.EnigmaService;
 import app.Module;
 
 public class App {
-	public static String key;
-	public static String activity;
-	public static String enigmaType;
+	public static String key = "-2";
+	public static String activity = "-d";
+	public static String enigmaType = "CaesarEnigma";
 
 	public static void main(String[] args){
 		for (String a: args) {
