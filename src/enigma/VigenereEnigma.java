@@ -13,18 +13,23 @@ public class VigenereEnigma implements EnigmaService
     public VigenereEnigma(String deliveredKey)
     {
         this.key = deliveredKey;
-
     }
 
     public String encipher(String text){
         String encodedString = "";
         for (Integer i = 0; i < text.length(); i++){
             String alphabet = getAlphabetCased(text.charAt(i));
-            Integer charFromPassword = alphabet.indexOf(this.key.charAt(i % this.key.length()));
-            Integer charValue = alphabet.indexOf(text.charAt(i));
-            Integer encodedValue = charFromPassword + charValue;
-            encodedValue = this.loop(encodedValue, alphabet);
-            encodedString = encodedString.concat(String.valueOf(alphabet.charAt(encodedValue)));
+            if (alphabet.indexOf(text.charAt(i)) >= 0){
+                Integer charFromPassword = alphabet.indexOf(this.key.charAt(i % this.key.length()));
+                Integer charValue = alphabet.indexOf(text.charAt(i));
+                Integer encodedValue = charFromPassword + charValue;
+                encodedValue = this.loop(encodedValue, alphabet);
+                encodedString = encodedString.concat(String.valueOf(alphabet.charAt(encodedValue)));
+            }
+            else {
+                encodedString = encodedString.concat(String.valueOf(text.charAt(i)));
+            }
+
         }
         return encodedString;
     }
@@ -33,11 +38,16 @@ public class VigenereEnigma implements EnigmaService
         String encodedString = "";
         for (Integer i = 0; i < text.length(); i++){
             String alphabet = getAlphabetCased(text.charAt(i));
-            Integer charFromPassword = alphabet.indexOf(this.key.charAt(i % this.key.length()));
-            Integer charValue = alphabet.indexOf(text.charAt(i));
-            Integer encodedValue = charValue - charFromPassword;
-            encodedValue = this.loop(encodedValue, alphabet);
-            encodedString = encodedString.concat(String.valueOf(alphabet.charAt(encodedValue)));
+            if (alphabet.indexOf(text.charAt(i)) >= 0){
+                Integer charFromPassword = alphabet.indexOf(this.key.charAt(i % this.key.length()));
+                Integer charValue = alphabet.indexOf(text.charAt(i));
+                Integer encodedValue = charValue - charFromPassword;
+                encodedValue = this.loop(encodedValue, alphabet);
+                encodedString = encodedString.concat(String.valueOf(alphabet.charAt(encodedValue)));
+            }
+            else {
+                encodedString = encodedString.concat(String.valueOf(text.charAt(i)));
+            }
         }
         return encodedString;
     }
