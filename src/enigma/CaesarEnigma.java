@@ -6,6 +6,7 @@ public class CaesarEnigma implements EnigmaService {
 
 	public static final boolean KEY_REQUIRED = true;
     private static Integer key;
+	public static final String NAME = "CaesarEnigma";
 
 	public CaesarEnigma() {
 	}
@@ -77,7 +78,7 @@ public class CaesarEnigma implements EnigmaService {
 	}
 
 	public String getName(){
-		return "CaesarEnigma";
+		return NAME;
 	}
 
 	public boolean isKeyRequired(){
