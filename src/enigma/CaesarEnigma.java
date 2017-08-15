@@ -1,6 +1,7 @@
 package enigma;
 
 import services.EnigmaService;
+import enigma.exceptions.NotIntegerException;
 
 public class CaesarEnigma implements EnigmaService {
 
@@ -86,18 +87,23 @@ public class CaesarEnigma implements EnigmaService {
 	}
 
 	public void setKey(String s) {
-        if (isInteger(s)) {
-            key = Integer.parseInt(s);
-        }
+		try {
+			if (isInteger(s)) {
+	            key = Integer.parseInt(s);
+	        }
+		} catch (NotIntegerException e) {
+			System.out.println(e.getMessage());
+			System.exit(0);
+		}
     }
 
-    public static boolean isInteger(String key) {
+    public static boolean isInteger(String key) throws NotIntegerException {
         try {
             Integer.parseInt(key);
         } catch(NumberFormatException e) {
-            return false;
+            throw new NotIntegerException("Given key is not an integer!");
         } catch(NullPointerException e) {
-            return false;
+			throw new NotIntegerException("Given key is not an integer!");
         }
         // only got here if we didn't return false
         return true;
