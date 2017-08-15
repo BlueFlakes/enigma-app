@@ -2,7 +2,6 @@ package enigma;
 
 import services.EnigmaService;
 
-
 public class VigenereEnigma implements EnigmaService
 {
     public static final String alphabet = "abcdefghijklmnoprqstuvwxyz";
@@ -20,6 +19,7 @@ public class VigenereEnigma implements EnigmaService
     public String encipher(String text){
         String encodedString = "";
         for (Integer i = 0; i < text.length(); i++){
+            String alphabet = getAlphabetCased(text.charAt(i));
             Integer charFromPassword = alphabet.indexOf(this.key.charAt(i % this.key.length()));
             Integer charValue = alphabet.indexOf(text.charAt(i));
             Integer encodedValue = charFromPassword + charValue;
@@ -32,6 +32,7 @@ public class VigenereEnigma implements EnigmaService
     public String decipher(String text){
         String encodedString = "";
         for (Integer i = 0; i < text.length(); i++){
+            String alphabet = getAlphabetCased(text.charAt(i));
             Integer charFromPassword = alphabet.indexOf(this.key.charAt(i % this.key.length()));
             Integer charValue = alphabet.indexOf(text.charAt(i));
             Integer encodedValue = charValue - charFromPassword;
@@ -69,4 +70,18 @@ public class VigenereEnigma implements EnigmaService
         return movedCharValue;
     }
 
+    public static void main(String[] args){
+        VigenereEnigma a = new VigenereEnigma("TAJNE");
+        String word = a.encipher("TO JEST BARDZO TAJNY TEKST");
+        word = a.decipher(word);
+        System.out.println(word);
+    }
+
+    public String getAlphabetCased(Character chr){
+        String alphabet;
+        if(Character.isUpperCase(chr)) alphabet = this.alphabet.toUpperCase();
+        else alphabet = this.alphabet;
+
+        return alphabet;
+    }
 }
