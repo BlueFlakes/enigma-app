@@ -7,9 +7,14 @@ import java.util.Arrays;
 import java.util.List;
 
 public class App {
+	private ServiceRepository repo;
 
-	public static boolean isArgsValid(String[] args, ServiceRepository repo) {
-		List<String> availableServices = repo.listAll();
+	public App(ServiceRepository repo) {
+		this.repo = repo;
+	}
+
+	private boolean isArgsValid(String[] args) {
+		List<String> availableServices = this.repo.listAll();
 		String[] availableActivities1 = {"-e", "-d"};
 		ArrayList<String> availableActivities = new ArrayList<>(Arrays.asList(availableActivities1));
 
@@ -25,37 +30,62 @@ public class App {
 		return false;
 	}
 
-	public static void listServices(ServiceRepository repo) {
-		List<String> services = repo.listAll();
+	private void listServices() {
+		List<String> services = this.repo.listAll();
 		System.out.println("Available services: ");
 		for (String service: services) {
 			System.out.println("- " + service);
 		}
 	}
 
-	public static void main(String[] args){
+	private void printArgsInfo() {
+		System.out.println("Wrong arguments!");
+		System.out.println("Proper format of commands:");
+		System.out.println("java engima.App -e | -d (encipher/decipher) CIPHER [KEY]");
+	}
+
+	private TerminalTranslator createTranslator(String[] args) {
+		TerminalTranslator translator = new TerminalTranslator();
+		translator.setActivity(args[0]);
+		translator.setEnigmaType(args[1]);
+
+		if (args.length == 3) {
+			translator.setKey(args[2]);
+		} else {
+			translator.setKey("");
+		}
+
+		return translator;
+	}
+
+	private static ServiceRepository createRepository() {
 		ServiceRepository repo = new ServiceRepository();
 		repo.register(new Rot13Enigma());
 		repo.register(new CaesarEnigma());
 		repo.register(new VigenereEnigma());
+		repo.register(new AtbashEnigma());
+		repo.register(new SquareMatrixEnigma());
+		repo.register(new XorEnigma());
 
-		if (isArgsValid(args, repo) && args.length > 1) {
-			TerminalTranslator module = new TerminalTranslator();
-			module.setActivity(args[0]);
-			module.setEnigmaType(args[1]);
-			if (args.length == 3) {
-				module.setKey(args[2]);
-			} else {
-				module.setKey("");
-			}
-			module.initialize(repo);
-			module.start();
-		} else if (isArgsValid(args, repo) && args.length == 1) {
-			listServices(repo);
+		return repo;
+	}
+
+	public static void main(String[] args){
+
+		ServiceRepository repo = createRepository();
+		App application = new App(repo);
+
+		if (application.isArgsValid(args) && args.length > 1) {
+			TerminalTranslator translator = application.createTranslator(args);
+
+			translator.initialize(application.repo);
+			translator.start();
+
+		} else if (application.isArgsValid(args) && args.length == 1) {
+			application.listServices();
+
 		} else {
-			System.out.println("Wrong arguments!");
-			System.out.println("Proper format of commands:");
-			System.out.println("java engima.Application  -e | -d (enciper/decipher) CIPHER [KEY]");
+			application.printArgsInfo();
 		}
 	}
 }
