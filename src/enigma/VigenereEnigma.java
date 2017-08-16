@@ -10,6 +10,7 @@ public class VigenereEnigma implements EnigmaService
     public static final String NAME = "VigenereEnigma";
     private String key;
 
+    public VigenereEnigma() {}
 
     public VigenereEnigma(String deliveredKey)
     {
@@ -80,7 +81,7 @@ public class VigenereEnigma implements EnigmaService
 		} catch (WrongKeyException e) {
 			System.out.println(e.getMessage());
 			System.exit(0);
-		} 
+		}
         this.key = deliveredKey;
     }
 
