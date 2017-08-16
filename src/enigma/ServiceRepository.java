@@ -32,11 +32,11 @@ public class ServiceRepository implements ServiceRegistry, ServiceProvider {
 
 		for(EnigmaService service : this.services)
         {
-            String serviceName = service.getName();
+            String serviceName = service.getName().toLowerCase();
 
             if ((this.usedServices.contains(serviceName)) == false)
             {
-                result.add(service.getName());
+                result.add(service.getName().toLowerCase());
 
             }
 		}
@@ -62,9 +62,9 @@ public class ServiceRepository implements ServiceRegistry, ServiceProvider {
 
         for(int i = 0; i < this.usedServices.size(); i++)
         {
-            String lowerCasedServiceName = this.usedServices.get(i).toLowerCase();
+            String serviceName = this.usedServices.get(i);
 
-            if (lowerCasedName.equals(lowerCasedServiceName))
+            if (lowerCasedName.equals(serviceName))
             {
                 index = i;
                 break;
@@ -77,15 +77,15 @@ public class ServiceRepository implements ServiceRegistry, ServiceProvider {
 
 	public EnigmaService getByName(String name)
     {
+		String lowerCasedName = name.toLowerCase();
 
 		for(EnigmaService service : this.services)
         {
-            String serviceName = service.getName();
+            String serviceName = service.getName().toLowerCase();
 
-
-			if (serviceName.equals(name) && (this.usedServices.contains(serviceName) == false))
+			if (serviceName.equals(lowerCasedName) && (this.usedServices.contains(serviceName) == false))
             {
-                this.usedServices.add(service.getName());
+                this.usedServices.add(serviceName);
 				return service;
 
 			}
