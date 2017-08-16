@@ -30,10 +30,10 @@ public class TerminalTranslator implements Module{
 
 		Scanner scan = new Scanner(System.in);
 		while(scan.hasNextLine()){
-			if (activity == "-e") {
+			if (activity.equals("-e")) {
 				System.out.println(enigma.encipher(scan.nextLine()));
 			}
-			else if (activity == "-d") {
+			else if (activity.equals("-d")) {
 				System.out.println(enigma.decipher(scan.nextLine()));
 			}
 		}
