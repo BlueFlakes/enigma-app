@@ -27,6 +27,8 @@ public class CaesarEnigma implements EnigmaService {
 
 					if (asciiCode > 90) {
 						asciiCode -= 26;
+					} else if (asciiCode < 65) {
+						asciiCode += 26;
 					}
 
 					encipheredLetter = (char) asciiCode;
@@ -60,6 +62,8 @@ public class CaesarEnigma implements EnigmaService {
 
 					if (asciiCode < 65) {
 						asciiCode += 26;
+					} else if (asciiCode > 90) {
+						asciiCode -= 26;
 					}
 
 					decipheredLetter = (char) asciiCode;
@@ -89,7 +93,7 @@ public class CaesarEnigma implements EnigmaService {
 	public void setKey(String s) {
 		try {
 			if (isInteger(s)) {
-	            key = Integer.parseInt(s);
+	            key = Integer.parseInt(s) % 26;
 	        }
 		} catch (WrongKeyException e) {
 			System.out.println(e.getMessage());
@@ -98,6 +102,7 @@ public class CaesarEnigma implements EnigmaService {
     }
 
     public static boolean isInteger(String key) throws WrongKeyException {
+
         try {
             Integer.parseInt(key);
         } catch(NumberFormatException e) {
