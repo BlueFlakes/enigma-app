@@ -45,7 +45,11 @@ public class App {
 			TerminalTranslator module = new TerminalTranslator();
 			module.setActivity(args[0]);
 			module.setEnigmaType(args[1]);
-			module.setKey(args[2]);
+			if (args.length == 3) {
+				module.setKey(args[2]);
+			} else {
+				module.setKey("");
+			}
 			module.initialize(repo);
 			module.start();
 		} else if (isArgsValid(args, repo) && args.length == 1) {
