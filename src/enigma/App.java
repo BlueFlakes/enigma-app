@@ -4,6 +4,7 @@ import services.EnigmaService;
 import app.Module;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class App {
 	public static String key = "-2";
@@ -29,15 +30,28 @@ public class App {
 		return false;
 	}
 
+	public static void listServices(ServiceRepository repo) {
+		List<String> services = repo.listAll();
+		System.out.println("Available services: ");
+		for (String service: services) {
+			System.out.println("- " + service);
+		}
+	}
+
 	public static void main(String[] args){
-		FakeServiceRepository repo = new FakeServiceRepository();
+		ServiceRepository repo = new ServiceRepository();
 		repo.register(new Rot13Enigma());
 		repo.register(new CaesarEnigma());
 
-		if (isArgsValid(args)) {
-			Module module = new TerminalTranslator();
+		if (isArgsValid(args) && args.length > 1) {
+			TerminalTranslator module = new TerminalTranslator();
+			module.setActivity(args[0]);
+			module.setEnigmaType(args[1]);
+			module.setKey(args[2]);
 			module.initialize(repo);
 			module.start();
+		} else if (isArgsValid(args) && args.length == 1) {
+			listServices(repo);
 		} else {
 			System.out.println("Wrong arguments!");
 			System.out.println("Proper format of commands:");
