@@ -4,7 +4,7 @@ import services.EnigmaService;
 
 public class VigenereEnigma implements EnigmaService
 {
-    public static final String alphabet = "abcdefghijklmnoprqstuvwxyz";
+    public static final String alphabet = "abcdefghijklmnopqrstuvwxyz";
     public static final boolean KEY_REQUIRED = true;
     public static final String NAME = "VigenereEnigma";
     private String key;
