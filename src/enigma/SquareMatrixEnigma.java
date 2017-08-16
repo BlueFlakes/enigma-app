@@ -50,8 +50,7 @@ public class SquareMatrixEnigma implements EnigmaService
 
     public String decipher(String text)
     {
-
-        return null;
+        return encipher(text);
     }
 
     public boolean isKeyRequired()
@@ -72,8 +71,4 @@ public class SquareMatrixEnigma implements EnigmaService
 
     }
 
-    private String extendText(String text)
-    {
-        return null;
-    }
 }
