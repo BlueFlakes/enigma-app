@@ -9,7 +9,6 @@ import java.util.List;
 public class App {
 
 	public static boolean isArgsValid(String[] args, ServiceRepository repo) {
-		args[1] = args[1].toLowerCase();
 		List<String> availableServices = repo.listAll();
 		String[] availableActivities1 = {"-e", "-d"};
 		ArrayList<String> availableActivities = new ArrayList<>(Arrays.asList(availableActivities1));
@@ -20,10 +19,9 @@ public class App {
 		if (args.length == 1 && args[0].equals("-l")) {
 			return true;
 		}
-		if (args.length > 1 && availableActivities.contains(args[0]) && availableServices.contains(args[1])) {
+		if (args.length > 1 && availableActivities.contains(args[0]) && availableServices.contains(args[1].toLowerCase())) {
 			return true;
 		}
-
 		return false;
 	}
 
