@@ -1,7 +1,7 @@
 package enigma;
 
 import services.EnigmaService;
-import enigma.exceptions.NotIntegerException;
+import enigma.exceptions.WrongKeyException;
 
 public class CaesarEnigma implements EnigmaService {
 
@@ -91,19 +91,19 @@ public class CaesarEnigma implements EnigmaService {
 			if (isInteger(s)) {
 	            key = Integer.parseInt(s);
 	        }
-		} catch (NotIntegerException e) {
+		} catch (WrongKeyException e) {
 			System.out.println(e.getMessage());
 			System.exit(0);
 		}
     }
 
-    public static boolean isInteger(String key) throws NotIntegerException {
+    public static boolean isInteger(String key) throws WrongKeyException {
         try {
             Integer.parseInt(key);
         } catch(NumberFormatException e) {
-            throw new NotIntegerException("Given key is not an integer!");
+            throw new WrongKeyException("Given key is not an integer!");
         } catch(NullPointerException e) {
-			throw new NotIntegerException("Given key is not an integer!");
+			throw new WrongKeyException("Given key is not an integer!");
         }
         // only got here if we didn't return false
         return true;
