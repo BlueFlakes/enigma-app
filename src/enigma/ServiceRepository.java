@@ -58,13 +58,12 @@ public class ServiceRepository implements ServiceRegistry, ServiceProvider {
     private Integer getServiceIndex(String name)
     {
         Integer index = null;
-        String lowerCasedName = name.toLowerCase();
 
         for(int i = 0; i < this.usedServices.size(); i++)
         {
             String serviceName = this.usedServices.get(i);
 
-            if (lowerCasedName.equals(serviceName))
+            if (name.equalsIgnoreCase(serviceName))
             {
                 index = i;
                 break;
@@ -77,13 +76,13 @@ public class ServiceRepository implements ServiceRegistry, ServiceProvider {
 
 	public EnigmaService getByName(String name)
     {
-		String lowerCasedName = name.toLowerCase();
+
 
 		for(EnigmaService service : this.services)
         {
-            String serviceName = service.getName().toLowerCase();
+            String serviceName = service.getName();
 
-			if (serviceName.equals(lowerCasedName) && (this.usedServices.contains(serviceName) == false))
+			if (serviceName.equalsIgnoreCase(name) && (this.usedServices.contains(serviceName) == false))
             {
                 this.usedServices.add(serviceName);
 				return service;
