@@ -9,6 +9,9 @@ import java.util.Scanner;
 public class TerminalTranslator implements Module{
 
 	private ServiceProvider provider;
+	private String enigmaType;
+	private String key;
+	private String activity;
 
 	public void initialize(ServiceProvider provider){
 		this.provider = provider;
@@ -19,20 +22,32 @@ public class TerminalTranslator implements Module{
 	}
 
 	public void start(){
-		EnigmaService enigma = provider.getByName(App.enigmaType);
+		EnigmaService enigma = provider.getByName(enigmaType);
 
 		if (enigma.isKeyRequired()) {
-			enigma.setKey(App.key);
+			enigma.setKey(key);
 		}
 
 		Scanner scan = new Scanner(System.in);
 		while(scan.hasNextLine()){
-			if (App.activity == "-e") {
+			if (activity == "-e") {
 				System.out.println(enigma.encipher(scan.nextLine()));
 			}
-			else if (App.activity == "-d") {
+			else if (activity == "-d") {
 				System.out.println(enigma.decipher(scan.nextLine()));
 			}
 		}
+	}
+
+	public void setKey(String k) {
+		this.key = k;
+	}
+
+	public void setActivity(String act) {
+		this.activity = act;
+	}
+
+	public void setEnigmaType(String type) {
+		this.enigmaType = type;
 	}
 }
