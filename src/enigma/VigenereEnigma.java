@@ -12,7 +12,7 @@ public class VigenereEnigma implements EnigmaService
 
     public VigenereEnigma(String deliveredKey)
     {
-        this.key = deliveredKey;
+        setKey(deliveredKey);
     }
 
     public String encipher(String text){
@@ -66,7 +66,7 @@ public class VigenereEnigma implements EnigmaService
 
     public void setKey(String deliveredKey)
     {
-        this.key = deliveredKey;
+        this.key = deliveredKey.toLowerCase();
 
     }
 
@@ -82,8 +82,7 @@ public class VigenereEnigma implements EnigmaService
 
     public static void main(String[] args){
         VigenereEnigma a = new VigenereEnigma("TAJNE");
-        String word = a.encipher("TO JEST BARDZO TAJNY TEKST");
-        word = a.decipher(word);
+        String word = a.encipher("taki tam tekst");
         System.out.println(word);
     }
 
