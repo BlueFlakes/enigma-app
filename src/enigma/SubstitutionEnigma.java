@@ -6,7 +6,7 @@ import java.util.Random;
 
 public class SubstitutionEnigma implements EnigmaService
 {
-    private static final boolean KEY_REQUIRED = false;
+    private static final boolean KEY_REQUIRED = true;
     private static final String NAME = "SubstitutionEnigma";
     private String key;
     public static final String alphabet = "abcdefghijklmnopqrstuvwxyz";
@@ -31,8 +31,8 @@ public class SubstitutionEnigma implements EnigmaService
     {
         String encipheredText = "";
         for(Character c: text.toCharArray()){
-            if(key.indexOf(c) >= 0){
-                encipheredText += key.charAt(alphabet.indexOf(c));
+            if(this.key.indexOf(c) >= 0){
+                encipheredText += this.key.charAt(this.alphabet.indexOf(c));
             }
             else{
                 encipheredText += c;
@@ -43,16 +43,16 @@ public class SubstitutionEnigma implements EnigmaService
 
     public String decipher(String text)
     {
-        String encipheredText = "";
+        String decipheredText = "";
         for(Character c: text.toCharArray()){
             if(key.indexOf(c) >= 0){
-                encipheredText += this.alphabet.charAt(this.key.indexOf(c));
+                decipheredText += this.alphabet.charAt(this.key.indexOf(c));
             }
             else{
-                encipheredText += c;
+                decipheredText += c;
             }
         }
-        return encipheredText;
+        return decipheredText;
     }
 
     public boolean isKeyRequired()
