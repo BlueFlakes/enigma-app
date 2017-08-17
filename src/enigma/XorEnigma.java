@@ -9,6 +9,10 @@ public class XorEnigma implements EnigmaService{
     public static final boolean KEY_REQUIRED = true;
     public static final String NAME = "XorEnigma";
 
+    public XorEnigma() {
+
+    }
+
     public XorEnigma(String deliveredKey)
     {
         this.setKey(deliveredKey);

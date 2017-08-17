@@ -4,7 +4,8 @@ import services.EnigmaService;
 
 public class Rot13Enigma implements EnigmaService {
 
-	public static final boolean KEY_REQUIRED = false;
+	private static final boolean KEY_REQUIRED = false;
+	private static final String NAME = "Rot13Enigma";
 
 	public Rot13Enigma(){
 	}
@@ -47,7 +48,7 @@ public class Rot13Enigma implements EnigmaService {
 	}
 
 	public String getName(){
-		return "Rot13Enigma";
+		return this.NAME;
 	}
 
 	public boolean isKeyRequired(){
