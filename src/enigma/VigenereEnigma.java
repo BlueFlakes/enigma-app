@@ -1,6 +1,7 @@
 package enigma;
 
 import services.EnigmaService;
+import enigma.exceptions.WrongKeyException;
 
 public class VigenereEnigma implements EnigmaService
 {
@@ -9,10 +10,23 @@ public class VigenereEnigma implements EnigmaService
     public static final String NAME = "VigenereEnigma";
     private String key;
 
+    public VigenereEnigma() {}
 
     public VigenereEnigma(String deliveredKey)
     {
+<<<<<<< HEAD
         setKey(deliveredKey);
+=======
+        this.setKey(deliveredKey);
+    }
+
+    private void checkDeliveredKey(String deliveredKey) throws WrongKeyException{
+        for (Character c : deliveredKey.toCharArray()){
+            if(alphabet.indexOf(c) < 0 && alphabet.toUpperCase().indexOf(c) < 0){
+                throw new WrongKeyException("Given keys should contains only latin letters!");
+            }
+        }
+>>>>>>> fd6f3de3a1236a3df19d59bdfdb3387022edaef2
     }
 
     public String encipher(String text){
@@ -66,8 +80,18 @@ public class VigenereEnigma implements EnigmaService
 
     public void setKey(String deliveredKey)
     {
+<<<<<<< HEAD
         this.key = deliveredKey.toLowerCase();
 
+=======
+        try {
+            checkDeliveredKey(deliveredKey);
+		} catch (WrongKeyException e) {
+			System.out.println(e.getMessage());
+			System.exit(0);
+		}
+        this.key = deliveredKey;
+>>>>>>> fd6f3de3a1236a3df19d59bdfdb3387022edaef2
     }
 
     public static Integer loop(Integer movedCharValue, String alphabet){
