@@ -34,11 +34,29 @@ public class ServiceRepository implements ServiceRegistry, ServiceProvider {
         {
             String serviceName = service.getName().toLowerCase();
 
-            if ((this.usedServices.contains(serviceName)) == false)
-            {
-                result.add(service.getName().toLowerCase());
+			if (service.isKeyRequired()) {
+				serviceName += "#";
+			}
 
-            }
+            result.add(serviceName);
+		}
+
+		return result;
+	}
+
+	public List<String> listAvailable()
+	{
+		List<String> result = new LinkedList<String>();
+
+		for(EnigmaService service : this.services)
+		{
+			String serviceName = service.getName().toLowerCase();
+
+			if (!this.usedServices.contains(serviceName))
+			{
+				result.add(serviceName);
+
+			}
 		}
 
 		return result;
