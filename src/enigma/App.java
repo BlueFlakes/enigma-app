@@ -32,9 +32,8 @@ public class App {
 
 	private void listServices() {
 		List<String> services = this.repo.listAllWithMarks();
-		System.out.println("Available services: ");
 		for (String service: services) {
-			System.out.println("- " + service);
+			System.out.println(service);
 		}
 	}
 
