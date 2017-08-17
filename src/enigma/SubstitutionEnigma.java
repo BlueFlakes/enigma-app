@@ -2,7 +2,7 @@ package enigma;
 
 import services.EnigmaService;
 import enigma.exceptions.WrongKeyException;
-
+import java.util.Random;
 
 public class SubstitutionEnigma implements EnigmaService
 {
@@ -14,7 +14,7 @@ public class SubstitutionEnigma implements EnigmaService
     public static void main(String[] args){
         SubstitutionEnigma x = new SubstitutionEnigma();
         try{
-            x.setKey("phqgiumeaylnofdxjkrcvstzwb");
+            x.setKey("");
             String word = x.encipher("defend the east wall of the castle");
             System.out.println(word);
             word = x.decipher(word);
@@ -69,7 +69,7 @@ public class SubstitutionEnigma implements EnigmaService
     public void setKey(String deliveredKey) throws WrongKeyException
     {
         if(isKeyValid(deliveredKey)) this.key = deliveredKey;
-        else throw new WrongKeyException("Key should contain 26 chars of latin alphabet without repetitions.");
+        else this.key = generateKey();
 
     }
 
@@ -78,6 +78,17 @@ public class SubstitutionEnigma implements EnigmaService
             if(key.indexOf((char) i) < 0) return false;
         }
         return (key.length() == 26);
+    }
+
+    private static String generateKey(){
+        String key = "";
+        Random generator = new Random();
+        while(key.length() < 26){
+            Character newChar = (char) (generator.nextInt(26) + 97);
+            if(key.indexOf(newChar) < 0) key += newChar;
+        }
+        System.out.printf("Your key is: %s%n", key);
+        return key;
     }
 
 
