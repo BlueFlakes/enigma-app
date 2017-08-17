@@ -14,8 +14,10 @@ public class SubstitutionEnigma implements EnigmaService
     public static void main(String[] args){
         SubstitutionEnigma x = new SubstitutionEnigma();
         try{
-            x.setKey("cgaywlmhqpoknvbsujxiftdrez");
-            String word = x.encipher("ala ma kota");
+            x.setKey("phqgiumeaylnofdxjkrcvstzwb");
+            String word = x.encipher("defend the east wall of the castle");
+            System.out.println(word);
+            word = x.decipher(word);
             System.out.println(word);
         }
         catch (WrongKeyException e){
@@ -28,8 +30,8 @@ public class SubstitutionEnigma implements EnigmaService
     {
         String encipheredText = "";
         for(Character c: text.toCharArray()){
-            if(key.indexOf(c) > 0){
-                encipheredText += alphabet.charAt(key.indexOf(c));
+            if(key.indexOf(c) >= 0){
+                encipheredText += key.charAt(alphabet.indexOf(c));
             }
             else{
                 encipheredText += c;
@@ -40,8 +42,16 @@ public class SubstitutionEnigma implements EnigmaService
 
     public String decipher(String text)
     {
-
-        return null;
+        String encipheredText = "";
+        for(Character c: text.toCharArray()){
+            if(key.indexOf(c) >= 0){
+                encipheredText += this.alphabet.charAt(this.key.indexOf(c));
+            }
+            else{
+                encipheredText += c;
+            }
+        }
+        return encipheredText;
     }
 
     public boolean isKeyRequired()
