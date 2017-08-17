@@ -17,15 +17,16 @@ public class VigenereEnigma implements EnigmaService
     public VigenereEnigma(String deliveredKey)
     {
         setKey(deliveredKey);
-        
+
     }
 
     public String encipher(String text){
         String encodedString = "";
         for (Integer i = 0; i < text.length(); i++){
             String alphabet = getAlphabetCased(text.charAt(i));
+            String key = getKeyCased(text.charAt(i));
             if (alphabet.indexOf(text.charAt(i)) >= 0){
-                Integer charFromPassword = alphabet.indexOf(this.key.charAt(i % this.key.length()));
+                Integer charFromPassword = alphabet.indexOf(key.charAt(i % key.length()));
                 Integer charValue = alphabet.indexOf(text.charAt(i));
                 Integer encodedValue = charFromPassword + charValue;
                 encodedValue = this.loop(encodedValue, alphabet);
@@ -43,15 +44,16 @@ public class VigenereEnigma implements EnigmaService
         String encodedString = "";
         for (Integer i = 0; i < text.length(); i++){
             String alphabet = getAlphabetCased(text.charAt(i));
+            String key = getKeyCased(text.charAt(i));
             if (alphabet.indexOf(text.charAt(i)) >= 0){
-                Integer charFromPassword = alphabet.indexOf(this.key.charAt(i % this.key.length()));
+                Integer charFromPassword = alphabet.indexOf(key.charAt(i % key.length()));
                 Integer charValue = alphabet.indexOf(text.charAt(i));
                 Integer encodedValue = charValue - charFromPassword;
                 encodedValue = this.loop(encodedValue, alphabet);
-                encodedString = encodedString.concat(String.valueOf(alphabet.charAt(encodedValue)));
+                encodedString += alphabet.charAt(encodedValue);
             }
             else {
-                encodedString = encodedString.concat(String.valueOf(text.charAt(i)));
+                encodedString += text.charAt(i);
             }
         }
         return encodedString;
@@ -97,5 +99,13 @@ public class VigenereEnigma implements EnigmaService
         else alphabet = this.alphabet;
 
         return alphabet;
+    }
+
+    public String getKeyCased(Character chr){
+        String key;
+        if(Character.isUpperCase(chr)) key = this.key.toUpperCase();
+        else key = this.key;
+
+        return key;
     }
 }
