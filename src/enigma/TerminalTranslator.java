@@ -3,6 +3,7 @@ package enigma;
 import app.Module;
 import services.EnigmaService;
 import registry.ServiceProvider;
+import enigma.exceptions.WrongKeyException;
 
 import java.util.Scanner;
 
@@ -21,11 +22,15 @@ public class TerminalTranslator implements Module{
 		return "TerminalTranslator";
 	}
 
-	public void start(){
+	public void start() {
 		EnigmaService enigma = provider.getByName(enigmaType);
-
-		if (enigma.isKeyRequired()) {
-			enigma.setKey(key);
+		try {
+			if (enigma.isKeyRequired()) {
+				enigma.setKey(key);
+			}
+		} catch (WrongKeyException e) {
+			System.out.println(e.getMessage());
+			return;
 		}
 
 		Scanner scan = new Scanner(System.in);

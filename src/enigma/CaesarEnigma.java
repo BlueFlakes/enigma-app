@@ -90,15 +90,12 @@ public class CaesarEnigma implements EnigmaService {
 		return KEY_REQUIRED;
 	}
 
-	public void setKey(String s) {
-		try {
+	public void setKey(String s) throws WrongKeyException{
+
 			if (isInteger(s)) {
 	            key = Integer.parseInt(s) % 26;
 	        }
-		} catch (WrongKeyException e) {
-			System.out.println(e.getMessage());
-			System.exit(0);
-		}
+
     }
 
     public static boolean isInteger(String key) throws WrongKeyException {
