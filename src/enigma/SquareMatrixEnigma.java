@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class SquareMatrixEnigma implements EnigmaService
 {
-    private static final boolean KEY_REQUIRED = false;
+    private static final boolean KEY_REQUIRED = true;
     private static final String NAME = "SquareMatrixEnigma";
     private String key;
 
