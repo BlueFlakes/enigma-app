@@ -10,6 +10,7 @@ public class SubstitutionEnigma implements EnigmaService
     private static final String NAME = "SubstitutionEnigma";
     private String key;
     public static final String alphabet = "abcdefghijklmnopqrstuvwxyz";
+    public static final boolean GENERATE_KEY = true;
 
     public static void main(String[] args){
         SubstitutionEnigma x = new SubstitutionEnigma();
@@ -69,7 +70,8 @@ public class SubstitutionEnigma implements EnigmaService
     public void setKey(String deliveredKey) throws WrongKeyException
     {
         if(isKeyValid(deliveredKey)) this.key = deliveredKey;
-        else this.key = generateKey();
+        else if (this.GENERATE_KEY) this.key = generateKey();
+        else throw new WrongKeyException("Key should contain 26 chars of latin alphabet without repetitions.");
 
     }
 
