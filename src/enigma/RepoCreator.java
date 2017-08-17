@@ -11,7 +11,10 @@ public class RepoCreator {
 		repo.register(new AtbashEnigma());
 		repo.register(new SquareMatrixEnigma());
 		repo.register(new XorEnigma());
-		repo.register(new RailFenceEnigma());
+		repo.register(new BaconEnigma());
+        repo.register(new RailFenceEnigma());
+        repo.register(new PolybiusSquareEnigma());
+        repo.register(new SubstitutionEnigma());
 
 		return repo;
 	}

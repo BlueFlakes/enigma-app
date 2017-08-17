@@ -51,7 +51,7 @@ public class BaconEnigma implements EnigmaService
             while(binaryValue.length() < 5) binaryValue = "0".concat(binaryValue);
 
             return binaryValue;
-        } 
+        }
         else {
             return "00000";
         }
@@ -87,7 +87,7 @@ public class BaconEnigma implements EnigmaService
         else if (maskChar == '0'){
             letter = Character.toLowerCase(keyChar);
         }
-        
+
         return letter;
     }
 
@@ -110,7 +110,7 @@ public class BaconEnigma implements EnigmaService
         String mask = "";
         for(Character chr : text.toCharArray()){
             if (chr.equals(' ')){
-                
+
             } else if (Character.isUpperCase(chr)){
                 mask += '1';
             } else {
@@ -136,8 +136,9 @@ public class BaconEnigma implements EnigmaService
     {
         for(Character c : deliveredKey.toCharArray()){
             c = Character.toLowerCase(c);
-            if(!containsOnlyLetter(c) && !c.equals(' ')) throw new WrongKeyException("Key should be compund of latin letters or spaces.");
+            if(!containsOnlyLetter(c) && !c.equals(' ') ) throw new WrongKeyException("Key should be compund of latin letters or spaces.");
         }
+        if (deliveredKey == "") throw new WrongKeyException("Key should be compund of latin letters or spaces.");
         this.key = deliveredKey;
 
     }
