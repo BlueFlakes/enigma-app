@@ -1,7 +1,7 @@
 package enigma;
 
 import services.EnigmaService;
-
+import enigma.exceptions.WrongKeyException;
 
 
 public class BaconEnigma implements EnigmaService
@@ -12,11 +12,16 @@ public class BaconEnigma implements EnigmaService
 
     public static void main(String[] dupy){
         BaconEnigma x = new BaconEnigma();
-        x.setKey("Hold off until we compromise. ");
-        String word = x.encipher("strikenow");
-        System.out.println(word);
-        word = x.decipher(word);
-        System.out.println(word);
+        try{
+            x.setKey("Hold off until we compromise");
+            String word = x.encipher("str.ikenow");
+            System.out.println(word);
+            word = x.decipher(word);
+            System.out.println(word);
+        } catch(WrongKeyException e){
+            System.out.println(e);
+        }
+
     }
 
     public String encipher(String text)
@@ -38,7 +43,7 @@ public class BaconEnigma implements EnigmaService
 
 
     private static String convertCharToBacon(Character chr){
-        if (97 <= chr && chr <= 122) {
+        if (containsOnlyLetter(chr)) {
             Integer charValue = ((int) chr) - 97;
 
             String binaryValue = Integer.toBinaryString(charValue);
@@ -50,6 +55,10 @@ public class BaconEnigma implements EnigmaService
         else {
             return "00000";
         }
+    }
+
+    private static boolean containsOnlyLetter(Character chr){
+        return (97 <= chr && chr <= 122);
     }
 
     private static String getKeyCased(String mask, String key){
@@ -123,8 +132,12 @@ public class BaconEnigma implements EnigmaService
 
     }
 
-    public void setKey(String deliveredKey)
+    public void setKey(String deliveredKey) throws WrongKeyException
     {
+        for(Character c : deliveredKey.toCharArray()){
+            c = Character.toLowerCase(c);
+            if(!containsOnlyLetter(c) && !c.equals(' ')) throw new WrongKeyException("Key should be compund of latin letters or spaces.");
+        }
         this.key = deliveredKey;
 
     }
