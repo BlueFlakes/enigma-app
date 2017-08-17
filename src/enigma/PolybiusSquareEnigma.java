@@ -49,8 +49,10 @@ public class PolybiusSquareEnigma implements EnigmaService
 
     public String decipher(String text)
     {
+        if(!isValidCryptogram(text)) return text;
         text = text.toLowerCase();
         String decipheredText = "";
+        String alphabet = this.alphabet.substring(0, 5);
         for(int i = 0; i < text.length(); i+= 2){
             if(alphabet.indexOf(text.charAt(i)) >= 0){
                 Integer column = alphabet.indexOf(text.charAt(i));
@@ -62,6 +64,13 @@ public class PolybiusSquareEnigma implements EnigmaService
             }
         }
         return decipheredText;
+    }
+
+    private boolean isValidCryptogram(String text){
+        for(Character c : text.toCharArray()){
+            if(this.alphabet.indexOf(c) >= 5) return false;
+        }
+        return true;
     }
 
     public boolean isKeyRequired()
