@@ -37,10 +37,17 @@ public class SubstitutionEnigma implements EnigmaService
 
     public void setKey(String deliveredKey) throws WrongKeyException
     {
-        this.key = deliveredKey;
+        if(isKeyValid(deliveredKey)) this.key = deliveredKey;
+        else throw new WrongKeyException("Key should contain 26 chars of latin alphabet without repetitions.");
 
     }
 
+    private static boolean isKeyValid(String key){
+        for(int i = 97; i <= 122; i++){
+            if(key.indexOf((char) i) < 0) return false;
+        }
+        return (key.length() == 26);
+    }
 
 
 }
