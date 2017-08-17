@@ -1,6 +1,7 @@
 package enigma;
 
 import services.EnigmaService;
+import enigma.exceptions.WrongKeyException;
 
 public class VigenereEnigma implements EnigmaService
 {
@@ -14,7 +15,7 @@ public class VigenereEnigma implements EnigmaService
         // default constructor
     }
 
-    public VigenereEnigma(String deliveredKey)
+    public VigenereEnigma(String deliveredKey) throws WrongKeyException
     {
         setKey(deliveredKey);
 
@@ -71,10 +72,32 @@ public class VigenereEnigma implements EnigmaService
 
     }
 
-    public void setKey(String deliveredKey)
+    public void setKey(String deliveredKey) throws WrongKeyException
     {
-        this.key = deliveredKey.toLowerCase();
+        if (isAlphabetical(deliveredKey) && (!(deliveredKey.isEmpty())))
+            this.key = deliveredKey.toLowerCase();
 
+        else
+            throw new WrongKeyException("Given key must contain only letters from latin alphabet!");
+
+    }
+
+    private boolean isAlphabetical(String key)
+    {
+        String lowerCaseLatinAlphabet = "abcdefghijklmnopqrstuvwxyz";
+        String upperCaseLatinAlphabet = lowerCaseLatinAlphabet.toUpperCase();
+
+        for (Character c : key.toCharArray())
+        {
+            String letter = Character.toString(c);
+
+            if (!(lowerCaseLatinAlphabet.contains(letter) || upperCaseLatinAlphabet.contains(letter)))
+            {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     public static Integer loop(Integer movedCharValue, String alphabet){
@@ -87,11 +110,7 @@ public class VigenereEnigma implements EnigmaService
         return movedCharValue;
     }
 
-    public static void main(String[] args){
-        VigenereEnigma a = new VigenereEnigma("TAJNE");
-        String word = a.encipher("taki tam tekst");
-        System.out.println(word);
-    }
+
 
     public String getAlphabetCased(Character chr){
         String alphabet;
