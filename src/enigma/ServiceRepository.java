@@ -34,6 +34,20 @@ public class ServiceRepository implements ServiceRegistry, ServiceProvider {
         {
             String serviceName = service.getName().toLowerCase();
 
+            result.add(serviceName);
+		}
+
+		return result;
+	}
+
+	public List<String> listAllWithMarks()
+    {
+		List<String> result = new LinkedList<String>();
+
+		for(EnigmaService service : this.services)
+        {
+            String serviceName = service.getName().toLowerCase();
+
 			if (service.isKeyRequired()) {
 				serviceName += "#";
 			}

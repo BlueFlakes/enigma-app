@@ -31,7 +31,7 @@ public class App {
 	}
 
 	private void listServices() {
-		List<String> services = this.repo.listAll();
+		List<String> services = this.repo.listAllWithMarks();
 		System.out.println("Available services: ");
 		for (String service: services) {
 			System.out.println("- " + service);
@@ -66,6 +66,7 @@ public class App {
 		repo.register(new AtbashEnigma());
 		repo.register(new SquareMatrixEnigma());
 		repo.register(new XorEnigma());
+		repo.register(new RailFenceEnigma());
 
 		return repo;
 	}
