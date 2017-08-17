@@ -90,6 +90,9 @@ public class PolybiusSquareEnigma implements EnigmaService
         return key;
     }
 
+    private boolean isExcludedChar(Character chr){
+        return chr.equals(this.EXCLUDED_CHAR);
+    }
 
 
 
