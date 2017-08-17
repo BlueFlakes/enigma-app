@@ -18,7 +18,7 @@ public class PolybiusSquareEnigma implements EnigmaService
         try{
             x.setKey("phqgmeaylnofdxkrcvszwbuti");
 
-            String word = "defend the east wall of the castle";
+            String word = "defend the east Wall of the castle";
             System.out.println(word);
             word = x.encipher(word);
             System.out.println(word);
@@ -32,6 +32,7 @@ public class PolybiusSquareEnigma implements EnigmaService
 
     public String encipher(String text)
     {
+        text = text.toLowerCase();
         String encipheredText = "";
         for(Character c : text.toCharArray()){
             if(this.key.indexOf(c) >= 0){
@@ -48,8 +49,19 @@ public class PolybiusSquareEnigma implements EnigmaService
 
     public String decipher(String text)
     {
-
-        return null;
+        text = text.toLowerCase();
+        String decipheredText = "";
+        for(int i = 0; i < text.length(); i+= 2){
+            if(alphabet.indexOf(text.charAt(i)) >= 0){
+                Integer column = alphabet.indexOf(text.charAt(i));
+                Integer row = alphabet.indexOf(text.charAt(i+1));
+                decipheredText += key.charAt((column*5) + row);
+            } else{
+                decipheredText += text.charAt(i);
+                i--;
+            }
+        }
+        return decipheredText;
     }
 
     public boolean isKeyRequired()
