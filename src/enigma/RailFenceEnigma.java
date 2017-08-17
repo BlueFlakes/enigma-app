@@ -50,15 +50,10 @@ public class RailFenceEnigma implements EnigmaService {
 		return KEY_REQUIRED;
 	}
 
-	public void setKey(String s) {
-		try {
-			if (CaesarEnigma.isInteger(s)) {
-	            key = Integer.parseInt(s) % 26;
-	        }
-		} catch (WrongKeyException e) {
-			System.out.println(e.getMessage());
-			System.exit(0);
-		}
+	public void setKey(String s) throws WrongKeyException {
+		if (CaesarEnigma.isInteger(s)) {
+            key = Integer.parseInt(s) % 26;
+        }
     }
 
     private static String[] splitIntoLines(String text, boolean enciphered) {
