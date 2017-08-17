@@ -9,10 +9,15 @@ public class VigenereEnigma implements EnigmaService
     public static final String NAME = "VigenereEnigma";
     private String key;
 
+    public VigenereEnigma()
+    {
+        // default constructor
+    }
 
     public VigenereEnigma(String deliveredKey)
     {
         setKey(deliveredKey);
+        
     }
 
     public String encipher(String text){
