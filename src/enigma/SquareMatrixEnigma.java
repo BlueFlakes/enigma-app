@@ -10,7 +10,20 @@ public class SquareMatrixEnigma implements EnigmaService
     private static final boolean KEY_REQUIRED = true;
     private static final String NAME = "SquareMatrixEnigma";
     private String key;
+    private boolean isUsed;
 
+    public SquareMatrixEnigma(){
+        this.isUsed = false;
+    }
+
+    public boolean getIsUsed(){
+        return this.isUsed;
+    }
+
+    public void changeIsUsed(){
+        if(this.isUsed) this.isUsed = false;
+        else this.isUsed = true;
+    }
     public String encipher(String text)
     {
         String result = "";

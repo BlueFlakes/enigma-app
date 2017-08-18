@@ -11,7 +11,8 @@ public class SubstitutionEnigma implements EnigmaService
     private String key;
     public static final String alphabet = "abcdefghijklmnopqrstuvwxyz";
     public static final boolean GENERATE_KEY = true;
-
+    private boolean isUsed;
+    
     public static void main(String[] args){
         SubstitutionEnigma x = new SubstitutionEnigma();
         try{
@@ -27,6 +28,19 @@ public class SubstitutionEnigma implements EnigmaService
     }
 
 
+
+    public SubstitutionEnigma(){
+        this.isUsed = false;
+    }
+
+    public boolean getIsUsed(){
+        return this.isUsed;
+    }
+
+    public void changeIsUsed(){
+        if(this.isUsed) this.isUsed = false;
+        else this.isUsed = true;
+    }
     public String encipher(String text)
     {
         String encipheredText = "";

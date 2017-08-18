@@ -8,10 +8,20 @@ public class CaesarEnigma implements EnigmaService {
 	public static final boolean KEY_REQUIRED = true;
     private static Integer key;
 	public static final String NAME = "CaesarEnigma";
+    private boolean isUsed;
 
-	public CaesarEnigma() {
-	}
+    public CaesarEnigma(){
+        this.isUsed = false;
+    }
 
+    public boolean getIsUsed(){
+        return this.isUsed;
+    }
+
+    public void changeIsUsed(){
+        if(this.isUsed) this.isUsed = false;
+        else this.isUsed = true;
+    }
 	public String encipher(String text){
 		String encipheredText = "";
 		char letter;

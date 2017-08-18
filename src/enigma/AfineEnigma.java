@@ -12,6 +12,20 @@ public class AfineEnigma implements EnigmaService
     private String key;
     private Integer key1;
     private Integer key2;
+    private boolean isUsed;
+
+    public AfineEnigma(){
+        this.isUsed = false;
+    }
+
+    public boolean getIsUsed(){
+        return this.isUsed;
+    }
+
+    public void changeIsUsed(){
+        if(this.isUsed) this.isUsed = false;
+        else this.isUsed = true;
+    }
 
     public static void main(String[] args){
         AfineEnigma x = new AfineEnigma();

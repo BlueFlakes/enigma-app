@@ -7,10 +7,20 @@ public class AtbashEnigma implements EnigmaService {
     public static final boolean KEY_REQUIRED = false;
 	public static final String NAME = "AtbashEnigma";
     private static final String ALPHABET = generateAlphabet();
+    private boolean isUsed;
 
-	public AtbashEnigma() {
-	}
+    public AtbashEnigma(){
+        this.isUsed = false;
+    }
 
+    public boolean getIsUsed(){
+        return this.isUsed;
+    }
+
+    public void changeIsUsed(){
+        if(this.isUsed) this.isUsed = false;
+        else this.isUsed = true;
+    }
 	public String encipher(String text){
 		String encipheredText = "";
         String encipheredLetter;

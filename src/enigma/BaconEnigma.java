@@ -9,7 +9,20 @@ public class BaconEnigma implements EnigmaService
     private static final boolean KEY_REQUIRED = true;
     private static final String NAME = "BaconEnigma";
     private String key;
+    private boolean isUsed;
 
+    public BaconEnigma(){
+        this.isUsed = false;
+    }
+
+    public boolean getIsUsed(){
+        return this.isUsed;
+    }
+
+    public void changeIsUsed(){
+        if(this.isUsed) this.isUsed = false;
+        else this.isUsed = true;
+    }
     public static void main(String[] dupy){
         BaconEnigma x = new BaconEnigma();
         try{
