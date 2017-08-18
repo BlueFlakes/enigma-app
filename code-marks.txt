@@ -1,0 +1,12 @@
+<file>:<line>, Note: <note>
+/java-1st-tw-enigma-lucidmotors/src/enigma/ServiceRepository.java:161, Note: CC: non java style braces, non consisten usage
+/java-1st-tw-enigma-lucidmotors/src/enigma/TerminalTranslator.java:411, Note: CC: duplicated code
+/java-1st-tw-enigma-lucidmotors/src/enigma/RailFenceEnigma.java:81, Note: OOP: shoudn't be static
+/java-1st-tw-enigma-lucidmotors/src/enigma/RailFenceEnigma.java:581, Note: CC: naming?
+/java-1st-tw-enigma-lucidmotors/src/enigma/App.java:651, Note: OOP: terminal translator should be a Module
+/java-1st-tw-enigma-lucidmotors/src/enigma/App.java:701, Note: CC: condition is not clear
+/java-1st-tw-enigma-lucidmotors/src/enigma/App.java:641, Note: CC: condition is not clear
+/java-1st-tw-enigma-lucidmotors/src/enigma/App.java:451, Note: OOP: should be in a separate class
+/java-1st-tw-enigma-lucidmotors/src/enigma/App.java:391, Note: OOP: should be in separate class
+/java-1st-tw-enigma-lucidmotors/src/enigma/App.java:151, Note: OOP: should be in separate class
+
