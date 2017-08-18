@@ -113,9 +113,9 @@ public class ServiceRepository implements ServiceRegistry, ServiceProvider {
         {
             String serviceName = service.getName();
 
-			if (serviceName.equalsIgnoreCase(name) && (service.getIsUsed) == false))
+			if (serviceName.equalsIgnoreCase(name) && (service.getIsUsed()) == false)
             {
-                service.changeIsUsed;
+                service.changeIsUsed();
 				return service;
 
 			}

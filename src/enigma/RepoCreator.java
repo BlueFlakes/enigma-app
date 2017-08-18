@@ -15,6 +15,7 @@ public class RepoCreator {
         repo.register(new RailFenceEnigma());
         repo.register(new PolybiusSquareEnigma());
         repo.register(new SubstitutionEnigma());
+        repo.register(new BaconEnigma());
 
 		return repo;
 	}

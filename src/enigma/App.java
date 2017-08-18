@@ -66,7 +66,11 @@ public class App {
 			TerminalTranslator translator = application.createTranslator(args);
 
 			translator.initialize(application.repo);
-			translator.start();
+			System.out.println(application.repo.getByName(args[1]));
+			System.out.println(application.repo.getByName(args[1]));
+			application.repo.release(args[1]);
+			System.out.println(application.repo.getByName(args[1]));
+			//translator.start();
 
 		} else if (application.isArgsValid(args) && args.length == 1) {
 			application.listServices();

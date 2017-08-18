@@ -7,4 +7,6 @@ public interface EnigmaService {
     public String getName();
     public boolean isKeyRequired();
     public void setKey(String key) throws WrongKeyException;
+    public boolean getIsUsed();
+    public void changeIsUsed();
 }
