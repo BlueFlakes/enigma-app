@@ -57,22 +57,9 @@ public class App {
 		return translator;
 	}
 
-	private static ServiceRepository createRepository() {
-		ServiceRepository repo = new ServiceRepository();
-		repo.register(new Rot13Enigma());
-		repo.register(new CaesarEnigma());
-		repo.register(new VigenereEnigma());
-		repo.register(new AtbashEnigma());
-		repo.register(new SquareMatrixEnigma());
-		repo.register(new XorEnigma());
-		repo.register(new RailFenceEnigma());
-
-		return repo;
-	}
-
 	public static void main(String[] args){
 
-		ServiceRepository repo = createRepository();
+		ServiceRepository repo = RepoCreator.createRepository();
 		App application = new App(repo);
 
 		if (application.isArgsValid(args) && args.length > 1) {
