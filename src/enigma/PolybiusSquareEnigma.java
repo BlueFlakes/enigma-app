@@ -12,7 +12,20 @@ public class PolybiusSquareEnigma implements EnigmaService
     private static final String NAME = "PolybiusSquareEnigma";
     private static final Character EXCLUDED_CHAR = 'j';
     private String key;
+    private boolean isUsed;
 
+    public PolybiusSquareEnigma(){
+        this.isUsed = false;
+    }
+
+    public boolean getIsUsed(){
+        return this.isUsed;
+    }
+
+    public void changeIsUsed(){
+        if(this.isUsed) this.isUsed = false;
+        else this.isUsed = true;
+    }
     public static void main(String[] args){
         PolybiusSquareEnigma x = new PolybiusSquareEnigma();
         try{

@@ -6,10 +6,20 @@ public class Rot13Enigma implements EnigmaService {
 
 	private static final boolean KEY_REQUIRED = false;
 	private static final String NAME = "Rot13Enigma";
+    private boolean isUsed;
 
-	public Rot13Enigma(){
-	}
+    public Rot13Enigma(){
+        this.isUsed = false;
+    }
 
+    public boolean getIsUsed(){
+        return this.isUsed;
+    }
+
+    public void changeIsUsed(){
+        if(this.isUsed) this.isUsed = false;
+        else this.isUsed = true;
+    }
 	public String encipher(String text){
 		String encipheredText = "";
 		char letter;

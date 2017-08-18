@@ -8,11 +8,20 @@ public class XorEnigma implements EnigmaService{
     private String key;
     public static final boolean KEY_REQUIRED = true;
     public static final String NAME = "XorEnigma";
+    private boolean isUsed;
 
-    public XorEnigma() {
-
+    public XorEnigma(){
+        this.isUsed = false;
     }
 
+    public boolean getIsUsed(){
+        return this.isUsed;
+    }
+
+    public void changeIsUsed(){
+        if(this.isUsed) this.isUsed = false;
+        else this.isUsed = true;
+    }
     public XorEnigma(String deliveredKey)
     {
         this.setKey(deliveredKey);

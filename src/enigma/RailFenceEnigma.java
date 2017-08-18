@@ -8,10 +8,20 @@ public class RailFenceEnigma implements EnigmaService {
     public static final boolean KEY_REQUIRED = true;
     private static Integer key;
 	public static final String NAME = "RailFenceEnigma";
+    private boolean isUsed;
 
-    public RailFenceEnigma() {
-	}
+    public RailFenceEnigma(){
+        this.isUsed = false;
+    }
 
+    public boolean getIsUsed(){
+        return this.isUsed;
+    }
+
+    public void changeIsUsed(){
+        if(this.isUsed) this.isUsed = false;
+        else this.isUsed = true;
+    }
 	public String encipher(String text){
         String[] lines = splitIntoLines(text, false);
         String encipheredText = "";
