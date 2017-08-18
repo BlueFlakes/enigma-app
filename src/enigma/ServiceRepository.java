@@ -78,11 +78,11 @@ public class ServiceRepository implements ServiceRegistry, ServiceProvider {
 
     public void release(String name)
     {
-        Integer serviceIndex = getServiceIndex(name);
-
-        if (serviceIndex != null)
+		for(EnigmaService service : this.services)
         {
-            this.usedServices.remove((int) serviceIndex);
+			if (service.getName().equalsIgnoreCase(name) && service.getIsUsed()) {
+				service.changeIsUsed();
+			}
 
         }
     }
@@ -109,14 +109,13 @@ public class ServiceRepository implements ServiceRegistry, ServiceProvider {
 	public EnigmaService getByName(String name)
     {
 
-
 		for(EnigmaService service : this.services)
         {
             String serviceName = service.getName();
 
-			if (serviceName.equalsIgnoreCase(name) && (this.usedServices.contains(serviceName) == false))
+			if (serviceName.equalsIgnoreCase(name) && (service.getIsUsed) == false))
             {
-                this.usedServices.add(serviceName);
+                service.changeIsUsed;
 				return service;
 
 			}
